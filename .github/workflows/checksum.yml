@@ -10,7 +10,7 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
       - name: Generate checksum
-        uses: jmgilman/generate-checksum@v1
+        uses: jmgilman/actions-generate-checksum@v1
         with:
           patterns: |
             *.md
