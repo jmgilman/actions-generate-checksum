@@ -49,6 +49,6 @@ The following options can be configured:
 
 | Key        | Required | Default      | Description |
 | ---------- | -------- | ------------ | ---------------------------------------------------- |
-| `action`   | Optional | sha256       | Hashing algorithm to use [md5, sha1, sha256, sha512] |
+| `method`   | Optional | sha256       | Hashing algorithm to use [md5, sha1, sha256, sha512] |
 | `output`   | Optional | checksum.txt | Output file path                                     | 
 | `patterns` | Required | N/A          | List of glob patterns to use for matching files      | 
