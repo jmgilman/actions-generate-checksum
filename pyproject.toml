@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "generate_checksum"
+version = "0.1.0"
+description = "Generates a checksum file from a list of glob patterns."
+authors = ["Joshua Gilman <joshuagilman@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^8.0.1"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+black = {version = "^21.8b0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

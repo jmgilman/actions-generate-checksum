@@ -5,17 +5,17 @@ inputs:
     description: Hashing algorithm to use
     required: false
     default: sha256
-  patterns:
-    description: List of glob patterns to use for matching files
-    required: true
   output:
     description: Output file path
     required: false
     default: checksum.txt
+  patterns:
+    description: List of glob patterns to use for matching files
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.method }}
-    - ${{ inputs.patterns }}
     - ${{ inputs.output }}
+    - ${{ inputs.patterns }}

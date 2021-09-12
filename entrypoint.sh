@@ -3,4 +3,4 @@
 set -e
 set -o pipefail
 
-python3 /checksum.py "$1" "$2" "$3"
+python /run/src/checksum.py --method "$1" --output "$2" $3
