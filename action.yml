@@ -1,0 +1,21 @@
+name: 'Generate Checksum'
+description: Generates a checksum file from a list of glob patterns
+inputs:
+  method:
+    description: Hashing algorithm to use
+    required: false
+    default: sha256
+  patterns:
+    description: List of glob patterns to use for matching files
+    required: true
+  output:
+    description: Output file path
+    required: false
+    default: checksum.txt
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.method }}
+    - ${{ inputs.patterns }}
+    - ${{ inputs.output }}

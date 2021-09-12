@@ -1,0 +1,22 @@
+on: workflow_dispatch
+
+name: Generate Checksum
+
+jobs:
+  test:
+    name: Generate Checksum
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Generate checksum
+        uses: jmgilman/generate-checksum@v1
+        with:
+          patterns: |
+            *.md
+            *.py
+      - name: Upload checksum file as artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: result
+          path: checksum.txt

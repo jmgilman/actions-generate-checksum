@@ -1,0 +1,1 @@
+Generates a checksum file from a list of glob patterns.
