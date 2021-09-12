@@ -1,0 +1,45 @@
+on:
+  push:
+    paths-ignore:
+      - '.github/**'
+      - '.vscode/**'
+      - '**.toml'
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '.github/**'
+      - '.vscode/**'
+      - '**.toml'
+      - '**.md'
+  workflow_dispatch:
+
+name: CI
+
+jobs:
+  lint:
+    name: Python Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Run flake8
+        uses: julianwachholz/flake8-action@v2
+        with:
+          checkName: "Python Lint"
+          path: src/
+  test:
+    name: Python Test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - name: Run image
+        uses: abatilo/actions-poetry@v2.0.0
+        with:
+          poetry-version: "1.1.5"
+      - name: Run test
+        run: poetry run python test.py
+      
