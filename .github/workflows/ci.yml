@@ -49,4 +49,19 @@ jobs:
         run: poetry install
       - name: Run test
         run: poetry run python test.py
-      
+  push:
+    name: Push Docker image to container registry
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.ref, 'refs/tags/v')
+    steps:
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: jmgilman/actions-generate-checksum:latest

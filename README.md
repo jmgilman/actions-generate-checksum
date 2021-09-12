@@ -2,13 +2,11 @@
 
 > Github action for generating checksum files
 
-<p align="center">
-    <a href="https://github.com/jmgilman/actions-generate-checksum/actions/workflows/ci.yml">
-        <img src="https://github.com/jmgilman/actions-generate-checksum/actions/workflows/ci.yml/badge.svg"/>
-    </a>
-</p>
+<a href="https://github.com/jmgilman/actions-generate-checksum/actions/workflows/ci.yml">
+    <img src="https://github.com/jmgilman/actions-generate-checksum/actions/workflows/ci.yml/badge.svg"/>
+</a>
 
-This is simple Github Action which calculates the checksum of files and outputs
+This is a simple Github Action that calculates the checksum of files and outputs
 the result into a local file. It's intended to be used in a release workflow
 when there is a desire to include a checksum file with the release artifacts.
 
