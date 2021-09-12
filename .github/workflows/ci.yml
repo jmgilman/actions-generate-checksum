@@ -31,6 +31,7 @@ jobs:
           path: src/
   test:
     name: Python Test
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
