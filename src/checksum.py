@@ -42,14 +42,23 @@ class InvalidMethod(Exception):
     default="checksum.txt",
     help="File to output checksums to",
 )
+@click.option(
+    "-v",
+    "--verbose",
+    help="Enable verbose output",
+    is_flag=True,
+)
 @click.argument("patterns")
 def main(
     method: str,
     output: str,
+    verbose: bool,
     patterns: str,
 ):
-    patterns = patterns.split("\n")
+    if verbose:
+        logging.getLogger().setLevel(logging.INFO)
 
+    patterns = patterns.split("\n")
     logging.info(f"Processing patterns: {patterns}")
     try:
         result = dict(  # {filename: checksum, ..}
