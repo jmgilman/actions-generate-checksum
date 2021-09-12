@@ -17,4 +17,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: jmgilman/actions-generate-checksum:latest
+          tags: ghcr.io/${{ github.repository_owner }}/actions-generate-checksum:latest
