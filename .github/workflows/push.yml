@@ -1,6 +1,15 @@
-on: ['workflow_dispatch']
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'     
+        required: true
 
 name: Manual Push
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   push:
@@ -10,11 +19,11 @@ jobs:
       - name: Log in to the Container registry
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/actions-generate-checksum:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.event.inputs.tag }}
