@@ -19,3 +19,6 @@ runs:
     - ${{ inputs.method }}
     - ${{ inputs.output }}
     - ${{ inputs.patterns }}
+branding:
+  icon: align-center
+  color: green
