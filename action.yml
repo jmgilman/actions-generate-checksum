@@ -13,8 +13,8 @@ inputs:
     description: List of glob patterns to use for matching files
     required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: ghcr.io/jmgilman/actions-generate-checksum:latest
   args:
     - ${{ inputs.method }}
     - ${{ inputs.output }}
