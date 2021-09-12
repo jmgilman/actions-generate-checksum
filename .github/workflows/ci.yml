@@ -17,7 +17,7 @@ name: CI
 
 jobs:
   lint:
-    name: Python Lint
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,8 +29,12 @@ jobs:
         with:
           checkName: "Python Lint"
           path: src/
+      - name: Run Docker lint
+        uses: ghe-actions/dockerfile-validator@v1
+        with:
+          dockerfile: 'Dockerfile'
   test:
-    name: Python Test
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
