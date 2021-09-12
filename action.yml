@@ -14,7 +14,7 @@ inputs:
     required: true
 runs:
   using: docker
-  image: ghcr.io/jmgilman/actions-generate-checksum:latest
+  image: docker://ghcr.io/jmgilman/actions-generate-checksum:latest
   args:
     - ${{ inputs.method }}
     - ${{ inputs.output }}
