@@ -72,6 +72,7 @@ def main(
         )
     except Exception as e:
         logging.error(f"Error calculating checksum: {e}")
+        exit(1)
 
     # Output in format of "(checksum) (filename)"
     output_contents: str = ""
@@ -84,6 +85,7 @@ def main(
             f.write(output_contents)
     except Exception as e:
         logging.error(f"Error writing checksum file: {e}")
+        exit(1)
 
 
 def checksums(method: str, pattern: str) -> list[(str, str)]:
