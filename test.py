@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, mock_open
 
-from src.checksum import checksum, checksums, InvalidMethod
+from src.checksum import checksum, checksums, InvalidMethod, format_filename
 
 
 @patch(
@@ -31,7 +31,7 @@ class TestChecksum(unittest.TestCase):
 @patch(
     "builtins.open", new_callable=mock_open, read_data="data".encode("utf-8")
 )
-@patch("glob.glob", return_value=["test1.txt", "test2.txt"])
+@patch("glob.glob", return_value=["archive/test1.txt", "test2.txt"])
 class TestChecksums(unittest.TestCase):
     def test_checksums(self, mock_file, mock_glob):
         """
@@ -45,10 +45,17 @@ class TestChecksums(unittest.TestCase):
         self.assertEqual(
             result,
             [
-                ("test1.txt", expected_checksum),
+                ("archive/test1.txt", expected_checksum),
                 ("test2.txt", expected_checksum),
             ],
         )
+
+
+class TestFilenameFormatter(unittest.TestCase):
+    def test_format_filename(self):
+        input = "archive/test.txt"
+        expected = "test.txt"
+        self.assertEqual(format_filename(input), expected)
 
 
 if __name__ == "__main__":

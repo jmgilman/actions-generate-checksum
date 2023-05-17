@@ -4,7 +4,7 @@ import hashlib
 import itertools
 import logging
 import os
-from typing import Any, Callable, Union
+from typing import Any, Callable, Dict, Union
 
 
 # Supported hashing methods
@@ -75,20 +75,7 @@ def main(
         logging.error(f"Error calculating checksum: {e}")
         exit(1)
 
-    # Output in format of "(checksum) (filename)"
-    output_contents: str = ""
-    for filename, checksum in result.items():
-        # for display purposes within the the checksum file, strip any paths on the file
-        short_name = os.basename(filename)
-        output_contents += f"{checksum} {short_name}\n"
-
-    logging.info(f"Writing output to {output}")
-    try:
-        with open(output, "w") as f:
-            f.write(output_contents)
-    except Exception as e:
-        logging.error(f"Error writing checksum file: {e}")
-        exit(1)
+    write_file(result, output)
 
 
 def checksums(method: str, pattern: str) -> list[(str, str)]:
@@ -142,6 +129,36 @@ def checksum(method: str, filename: str) -> (str, str):
             return (filename, METHODS[method](f.read()).hexdigest())
         except KeyError:
             raise InvalidMethod(method)
+
+
+def write_file(checksums: Dict[str, str], out_file: str):
+    """Writes filename and checksum pairs to a file.
+
+    Parameters
+    ----------
+    checksums: Dict[filename str, checksum str]
+        Filename-checksum pairs.
+    out_file: str
+        The file name to write the output to.
+
+    """
+    # Output in format of "(checksum) (filename)"
+    output_contents: str = ""
+    for filename, checksum in checksums.items():
+        short_name = format_filename(filename)
+        output_contents += f"{checksum} {short_name}\n"
+
+    logging.info(f"Writing output to {out_file}")
+    try:
+        with open(out_file, "w") as f:
+            f.write(output_contents)
+    except Exception as e:
+        logging.error(f"Error writing checksum file: {e}")
+        exit(1)
+
+
+def format_filename(filename: str) -> str:
+    return os.path.basename(filename)
 
 
 if __name__ == "__main__":
