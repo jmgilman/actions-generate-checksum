@@ -3,6 +3,7 @@ import glob
 import hashlib
 import itertools
 import logging
+import os
 from typing import Any, Callable, Union
 
 
@@ -77,7 +78,9 @@ def main(
     # Output in format of "(checksum) (filename)"
     output_contents: str = ""
     for filename, checksum in result.items():
-        output_contents += f"{checksum} {filename}\n"
+        # for display purposes within the the checksum file, strip any paths on the file
+        short_name = os.basename(filename)
+        output_contents += f"{checksum} {short_name}\n"
 
     logging.info(f"Writing output to {output}")
     try:
