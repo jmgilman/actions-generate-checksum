@@ -17,10 +17,7 @@ mypy-extensions = ">=0.4.3"
 pathspec = ">=0.9.0,<1"
 platformdirs = ">=2"
 tomli = ">=0.2.6,<2.0.0"
-typing-extensions = [
-    {version = ">=3.10.0.0,<3.10.0.1 || >3.10.0.1", markers = "python_version >= \"3.10\""},
-    {version = ">=3.10.0.0", markers = "python_version < \"3.10\""},
-]
+typing-extensions = {version = ">=3.10.0.0,<3.10.0.1 || >3.10.0.1", markers = "python_version >= \"3.10\""}
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
@@ -164,5 +161,5 @@ files = [
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.9"
-content-hash = "bcfa62798b1d7c2a4a351f65bb875a09d4182ff3a2c56127846a231b18f38cbe"
+python-versions = "^3.12"
+content-hash = "d7e47171ca6425d69a6c2e08b048d7837ee4705beded6f6d0dea538136e21dbf"
