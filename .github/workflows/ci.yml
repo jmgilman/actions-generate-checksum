@@ -1,13 +1,11 @@
 on:
   push:
     paths-ignore:
-      - '.github/**'
       - '.vscode/**'
       - '**.toml'
       - '**.md'
   pull_request:
     paths-ignore:
-      - '.github/**'
       - '.vscode/**'
       - '**.toml'
       - '**.md'
